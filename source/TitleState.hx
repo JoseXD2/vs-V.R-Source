@@ -54,11 +54,11 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-	//	#if polymod
-	//	polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-	//	#end
+		#if polymod
+		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		#end
 		
-		#if sys
+		#if windows
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
 			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
 		#end
@@ -68,7 +68,7 @@ class TitleState extends MusicBeatState
 			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
 		}
 		
-		#if !cpp
+		
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
@@ -76,7 +76,7 @@ class TitleState extends MusicBeatState
 
 		KadeEngineData.initSave();
 		
-		#end
+		
 
 
 				
@@ -105,14 +105,14 @@ class TitleState extends MusicBeatState
 		FlxG.switchState(new ChartingState());
 		clean();
 		#else
-		#if !cpp
+		
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
 		});
-		#else
+		
 		startIntro();
-		#end
+		
 		#end
 	}
 
@@ -272,7 +272,7 @@ class TitleState extends MusicBeatState
 
 		var pressedEnter:Bool = controls.ACCEPT;
 
-		#if mobile
+		#if android
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
@@ -284,7 +284,7 @@ class TitleState extends MusicBeatState
 
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
-			#if !switch
+			#if (!switch && newgrounds)
 			NGio.unlockMedal(60960);
 
 			// If it's Friday according to da clock
