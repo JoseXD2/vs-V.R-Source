@@ -211,7 +211,11 @@ class DialogueBox extends FlxSpriteGroup
 			dialogueStarted = true;
 		}
 
-		if (FlxG.keys.justPressed.SPACE && canskip)
+		#if android
+		addVirtualPad(NONE, A);
+		#end
+			
+		if (controls.ACCEPT && canskip)
 		{
 			finishThing();
 			kill();
