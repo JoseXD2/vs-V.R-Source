@@ -212,16 +212,25 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		#if android
-		addVirtualPad(NONE, A);
+		var justTouched:Bool = false;
+
+		for (touch in FlxG.touches.list)
+		{
+			justTouched = false;
+			
+			if (touch.justReleased){
+				justTouched = true;
+			}
+		}
 		#end
 			
-		if (controls.ACCEPT && canskip)
+		if (FlxG.keys.justPressed.ANY #if mobile || justTouched #end && canskip)
 		{
 			finishThing();
 			kill();
 		}
 
-		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
+		if (FlxG.keys.justPressed.ANY #if mobile || justTouched #end && dialogueStarted == true)
 		{
 			remove(dialogue);
 				
