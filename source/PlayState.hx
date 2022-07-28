@@ -3690,7 +3690,7 @@ class PlayState extends MusicBeatState
 						}
 						else
 						{
-							directionsAccounted[daNote.noteData] = true;
+							
 							possibleNotes.push(daNote);
 							directionList.push(daNote.noteData);
 						}
