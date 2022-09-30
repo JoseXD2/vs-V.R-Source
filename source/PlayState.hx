@@ -3805,9 +3805,9 @@ class PlayState extends MusicBeatState
 		{
 			playerStrums.forEach(function(spr:FlxSprite)
 			{
-				if (HoldArray[spr.ID] && spr.animation.curAnim.name != 'confirm' && spr.animation.curAnim.name != 'pressed')
+				if (holdArray[spr.ID] && spr.animation.curAnim.name != 'confirm' && spr.animation.curAnim.name != 'pressed')
 					spr.animation.play('pressed', false);
-				if (!HoldArray[spr.ID])
+				if (!holdArray[spr.ID])
 					spr.animation.play('static', false);
 
 				if (spr.animation.curAnim.name == 'confirm' && SONG.noteStyle != 'pixel')
